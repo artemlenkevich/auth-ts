@@ -5,6 +5,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import style from './App.module.scss';
 import { Layout } from './components/Layout';
 import { LoginPage } from "./pages/LoginPage";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='news' element={<NewsPage />} />
           <Route path='profile' element={<ProfilePage />} />
           <Route path='login' element={<LoginPage />}/>
+          <Route path='*' element={<NotFound />}/>
         </Route>
       </Routes>
     </div>
