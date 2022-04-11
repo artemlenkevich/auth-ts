@@ -1,10 +1,10 @@
 import { Field, Form, Formik } from "formik"
 import { useLocation, useNavigate } from "react-router-dom"
-import { setIsAuth } from "../../redux/authSlice"
+import { logInUser } from "../../redux/authSlice"
 import { useAppDispatch } from "../../redux/hooks"
 
 interface MyFormValues {
-    username: string
+    email: string
     password: string
 }
 
@@ -17,27 +17,25 @@ export const LoginPage: React.FC = () => {
     
 
     const initialValues: MyFormValues = {
-        username: '',
+        email: '',
         password: ''
     };
-
-
 
     return (
         <div>
             <h1>LoginPage</h1>
             <Formik
                 initialValues={initialValues}
-                onSubmit={({ username, password }) => {
-                    if (username === 'Admin' && password === '12345') {
-                        dispatch(setIsAuth(true))
-                        navigate(from)
-                    }
+                onSubmit={({ email, password }) => {
+                    dispatch(logInUser({ email, password }))
+                    .then(({ payload }) => {
+                        if (payload && from) navigate(from)
+                    })
                 }}
             >
                 <Form>
-                    <label htmlFor="username">User name</label>
-                    <Field id="username" name="username" placeholder="" />
+                    <label htmlFor="email">Email</label>
+                    <Field id="email" name="email" placeholder="" />
                     <label htmlFor="password">Password</label>
                     <Field id="password" name="password" placeholder="" />
                     <button type="submit">Submit</button>
