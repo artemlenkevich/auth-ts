@@ -11,6 +11,8 @@
     transition: all 0.2s ease-out;
     color: aliceblue;
     text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
     &:hover {
         background-color: #ffffff5e;
     }
@@ -19,4 +21,7 @@
 .nav__btnWrapper {
     display: block;
     margin-right: 10px;
+    &:last-child {
+        margin-left: auto;
+    }
 }

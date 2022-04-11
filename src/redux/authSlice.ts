@@ -20,7 +20,7 @@ export const logInUser = createAsyncThunk(
             const data = await authApi.logIn(logInData)  
             switch(data.status) {
                 case 'ok':
-                    return data.id;
+                    return data.data.id;
                 case 'err':
                     // return data.message;
                     console.log(data.message);      
@@ -35,8 +35,9 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setIsAuth: (state, action: PayloadAction<boolean>) => {
-            state.isAuth = action.payload
+        logOutUser: (state) => {
+            state.isAuth = false
+            state.id = null
         }
     },
     extraReducers: (builder) => {
@@ -48,8 +49,9 @@ export const authSlice = createSlice({
     }
 })
 
-export const { setIsAuth } = authSlice.actions
+export const { logOutUser } = authSlice.actions
 
 export const authReducer = authSlice.reducer
 
+/* Selectors */
 export const selectIsAuth = (state: RootState) => state.auth.isAuth

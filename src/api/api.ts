@@ -8,6 +8,6 @@ export const authApi = {
     logIn({ email, password }: AuthApi.LogInParams) {
         return apiClient.post('validate', { email, password })
                 .then(r => r.data )
-                .catch(e => console.log(e)) 
+                .catch(e => console.log(e))
     }
 }
