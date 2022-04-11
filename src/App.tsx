@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import { MainPage } from './pages/MainPage';
 import { NewsPage } from './pages/NewsPage';
 import { ProfilePage } from './pages/ProfilePage';
-import style from './App.module.scss';
 import { Layout } from './components/Layout';
 import { LoginPage } from "./pages/LoginPage";
 import { NotFound } from "./pages/NotFound";

@@ -1,5 +1,4 @@
 import { Field, Form, Formik } from "formik"
-import { useLocation, useNavigate } from "react-router-dom"
 import { logInUser } from "../../redux/authSlice"
 import { useAppDispatch } from "../../redux/hooks"
 
@@ -10,11 +9,6 @@ interface MyFormValues {
 
 export const LoginPage: React.FC = () => {
     const dispatch = useAppDispatch()
-    const location = useLocation()
-    const navigate = useNavigate()
-
-    const { from } = location.state as { from: string }
-    
 
     const initialValues: MyFormValues = {
         email: '',
@@ -28,9 +22,6 @@ export const LoginPage: React.FC = () => {
                 initialValues={initialValues}
                 onSubmit={({ email, password }) => {
                     dispatch(logInUser({ email, password }))
-                    .then(({ payload }) => {
-                        if (payload && from) navigate(from)
-                    })
                 }}
             >
                 <Form>
