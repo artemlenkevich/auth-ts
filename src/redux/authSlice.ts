@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { authApi, AuthApi } from "../api"
 
 import { RootState } from "./store"
@@ -20,6 +20,7 @@ export const logInUser = createAsyncThunk(
             const data = await authApi.logIn(logInData)  
             switch(data.status) {
                 case 'ok':
+                    localStorage.setItem('id', data.data.id)
                     return data.data.id;
                 case 'err':
                     // return data.message;
@@ -38,6 +39,10 @@ export const authSlice = createSlice({
         logOutUser: (state) => {
             state.isAuth = false
             state.id = null
+        },
+        setAuthData: (state, { payload }: PayloadAction<number>) => {
+            state.isAuth = true
+            state.id = payload
         }
     },
     extraReducers: (builder) => {
@@ -49,7 +54,7 @@ export const authSlice = createSlice({
     }
 })
 
-export const { logOutUser } = authSlice.actions
+export const { logOutUser, setAuthData } = authSlice.actions
 
 export const authReducer = authSlice.reducer
 

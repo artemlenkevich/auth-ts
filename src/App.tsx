@@ -5,8 +5,18 @@ import { ProfilePage } from './pages/ProfilePage';
 import { Layout } from './components/Layout';
 import { LoginPage } from "./pages/LoginPage";
 import { NotFound } from "./pages/NotFound";
+import { useEffect } from "react";
+import { useAppDispatch } from "./redux/hooks";
+import { setAuthData } from "./redux/authSlice";
 
 function App() {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    let userId = localStorage.getItem('id');
+    if (userId) dispatch(setAuthData(+userId))
+  })
+
   return (
     <div>
       <Routes>
