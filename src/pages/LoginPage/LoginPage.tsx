@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik"
-import { logInUser } from "../../redux/authSlice"
-import { useAppDispatch } from "../../redux/hooks"
+import { logInUser, selectErrorMessage } from "../../redux/authSlice"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import style from './LoginPage.module.scss'
 
 interface MyFormValues {
@@ -10,6 +10,7 @@ interface MyFormValues {
 
 export const LoginPage: React.FC = () => {
     const dispatch = useAppDispatch()
+    const errorMessage = useAppSelector(selectErrorMessage)
 
     const initialValues: MyFormValues = {
         email: '',
@@ -34,6 +35,7 @@ export const LoginPage: React.FC = () => {
                         Password
                         <Field className={style.field} id="password" name="password" placeholder="" />
                     </label>
+                    {errorMessage && <div>{errorMessage}</div>}
                     <button type="submit">Submit</button>
                 </Form>
             </Formik>

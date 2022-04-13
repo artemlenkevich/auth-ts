@@ -8,7 +8,8 @@ export const Navbar: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const onLogOutClick = () => {
-        dispatch(logOutUser())
+        dispatch(logOutUser());
+        localStorage.removeItem('id');
     }
 
     return (

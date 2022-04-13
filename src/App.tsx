@@ -14,7 +14,9 @@ function App() {
 
   useEffect(() => {
     let userId = localStorage.getItem('id');
-    if (userId) dispatch(setAuthData(+userId))
+    if (userId) {
+      dispatch(setAuthData(+userId))
+    }
   })
 
   return (
