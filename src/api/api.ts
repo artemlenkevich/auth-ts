@@ -11,3 +11,12 @@ export const authApi = {
                 .catch(e => console.log(e))
     }
 }
+
+export const profileApi = {
+    getUserInfo(id: number) {
+        return apiClient.get(`user-info/${id}`)
+                .then(r => r.data)
+                .catch(e => console.log(e))
+
+    }
+}
